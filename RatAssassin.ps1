@@ -1,6 +1,6 @@
-﻿#Kill Rats on Your Compute 
+﻿#Kill Rats on Your Computer
 #Works with Rats with DeFault Setting
-#Owned by Karem Ali , IHACk
+#Owned by Karem Ali 
 get-process  | Get-ChildItem | select @{n='name'; e={$_.basename}} , directory | where{$_.directory  -like "*temp*" –or $_.directory -like "*appdata*"} | stop-process ;  #Scan Process and Kill Rat's Process
 Set-Location C:\Users\$env:username #Choose The Current User
 set-location 'Appdata\roaming\Microsoft\windows\Start Menu\Programs'
@@ -15,4 +15,4 @@ Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Run *0*| Remove
 Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce *0* | Remove-Item
 echo "You Are Save" "By Karem Ali - IHACK "| out-file C:\Users\$env:username\desktop\report.txt
 notepad c:\users\$env:username\desktop\report.txt
-#It is Part of IHACk Scripting Tutorial , There are More Improvements will take place on this Script 
+#There are More Improvements will take place on this Script 
