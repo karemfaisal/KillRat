@@ -108,6 +108,28 @@ New-ItemProperty -Path $path -Name Enabled -Value 0 -PropertyType DWORD
 
  #Kill Wscript process
  Get-Process | where{$_.name -eq "wscript"} | Stop-Process
+ Get-Process | where{$_.name -eq "cscript"} | Stop-Process
+
+
+#Search Scheduled Tasks 
+$task = Get-ScheduledTask | Get-ScheduledTaskInfo |  sort taskname  |where{$_.TaskPath -like "\"}
+
+foreach($obj in $task)
+    {
+      #  $obj.TaskName
+     #  (Get-ScheduledTask -TaskName $obj.taskname).Triggers
+     $execute = (Get-ScheduledTask -TaskName $obj.taskname).Actions.Execute
+        if(  $execute -like "*Windows*" -or $execute -like "*Program File*" -or $execute -like "*%ProgramFiles(x86)%*" -or $execute -like "*%ProgramFiles%*" )
+            {
+                
+            }
+            else{
+            $obj.TaskName
+            Disable-ScheduledTask  -TaskName $obj.TaskName
+            }
+
+    }
+
 
  #End of The Script
 echo "You Are Save" "By Karem Ali  "| out-file C:\Users\$env:username\desktop\report.txt
